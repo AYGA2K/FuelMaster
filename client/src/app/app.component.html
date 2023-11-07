@@ -1,0 +1,28 @@
+<div>
+  <div class="navbar bg-base-100">
+    <div class="navbar-start"></div>
+    <div class="navbar-center">
+      <a
+        routerLink="/station"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        class="btn btn-ghost normal-case text-xl"
+      >
+        Station
+      </a>
+      <a
+        routerLink="/carburant"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        class="btn btn-ghost normal-case text-xl"
+      >
+        Carburant
+      </a>
+    </div>
+    <div class="navbar-end"></div>
+  </div>
+  <div class="hero min-h-screen">
+    <!-- The routed views render in the <router-outlet>-->
+    <router-outlet></router-outlet>
+  </div>
+</div>

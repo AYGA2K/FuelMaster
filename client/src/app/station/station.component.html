@@ -1,0 +1,27 @@
+<div class="">
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">Name</th>
+        <th class="px-4 py-2">City</th>
+        <th class="px-4 py-2">Address</th>
+        <th class="px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let station of stations">
+        <td class="px-4 py-2">{{ station.name }}</td>
+        <td class="px-4 py-2">{{ station.city }}</td>
+        <td class="px-4 py-2">{{ station.address }}</td>
+        <td class="px-4 py-2 flex flex-row gap-2">
+          <button class="link link-primary" (click)="editStation(station)">
+            Edit
+          </button>
+          <button class="link link-error" (click)="deleteStation(station)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
