@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { StationComponent } from './station/station.component';
 import { CarburantComponent } from './carburant/carburant.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { HistocarbComponent } from './histocarb/histocarb.component';
 @NgModule({
-  declarations: [AppComponent, StationComponent, CarburantComponent],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+  declarations: [AppComponent, StationComponent, CarburantComponent, HistocarbComponent],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

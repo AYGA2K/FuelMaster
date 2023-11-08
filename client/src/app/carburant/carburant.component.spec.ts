@@ -1,21 +1,75 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import { CarburantComponent } from './carburant.component';
+interface Carburant {
+  id?: number;
+  name: string;
+  description: string;
+}
 
-describe('CarburantComponent', () => {
-  let component: CarburantComponent;
-  let fixture: ComponentFixture<CarburantComponent>;
+@Component({
+  selector: 'app-carburant',
+  templateUrl: './carburant.component.html',
+  styleUrls: ['./carburant.component.scss'],
+})
+export class CarburantComponent {
+  constructor(private http: HttpClient) {}
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [CarburantComponent]
+  carburants: Carburant[] = [];
+  carburant: Carburant = {
+    name: '',
+    description: '',
+  };
+  showForm = false;
+  editForm = false;
+  newCarburant: Carburant = {
+    name: '',
+    description: '',
+  };
+  api: string = 'http://localhost:8080/';
+
+  toggleForm() {
+    this.showForm = !this.showForm;
+  }
+
+  ngOnInit() {
+    this.http.get<Carburant[]>(this.api + 'carburants').subscribe((data) => {
+      this.carburants = data;
     });
-    fixture = TestBed.createComponent(CarburantComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  addCarburant() {
+    this.http
+      .post(this.api + 'carburants', this.newCarburant, {
+        responseType: 'text',
+      })
+      .subscribe((data) => {
+        this.ngOnInit();
+        this.showForm = false;
+      });
+  }
+
+  showEditForm(carburant: Carburant) {
+    this.editForm = true;
+    this.carburant = carburant;
+  }
+
+  editCarburant() {
+    this.http
+      .put(this.api + 'carburants/' + this.carburant.id, this.carburant, {
+        responseType: 'text',
+      })
+      .subscribe((data) => {
+        this.ngOnInit();
+        this.editForm = false;
+      });
+  }
+
+  deleteCarburant(carburant: Carburant) {
+    this.http
+      .delete(this.api + 'carburants/' + carburant.id, { responseType: 'text' })
+      .subscribe((data) => {
+        this.ngOnInit();
+      });
+  }
+}

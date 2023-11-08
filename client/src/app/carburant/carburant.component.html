@@ -1,1 +1,98 @@
-<p>carburant works!</p>
+<div class="">
+  <button class="btn" (click)="toggleForm()">Add new carburant</button>
+  <div *ngIf="showForm">
+    <form (ngSubmit)="addCarburant()" class="p-4 space-y-4">
+      <div class="flex flex-col">
+        <label for="name" class="text-sm font-semibold">Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="newCarburant.name"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="description" class="text-sm font-semibold"
+          >Description:</label
+        >
+        <input
+          type="text"
+          id="description"
+          name="description"
+          [(ngModel)]="newCarburant.description"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+      >
+        Add Carburant
+      </button>
+    </form>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">Name</th>
+        <th class="px-4 py-2">Description</th>
+        <th class="px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let carburant of carburants">
+        <td class="px-4 py-2">{{ carburant.name }}</td>
+        <td class="px-4 py-2">{{ carburant.description }}</td>
+        <td class="px-4 py-2 flex flex-row gap-2">
+          <button class="link link-primary" (click)="showEditForm(carburant)">
+            Edit
+          </button>
+          <button class="link link-error" (click)="deleteCarburant(carburant)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="editForm">
+    <form (ngSubmit)="editCarburant()" class="p-4 space-y-4">
+      <div class="flex flex-col">
+        <label for="name" class="text-sm font-semibold">Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="carburant.name"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="description" class="text-sm font-semibold"
+          >Description:</label
+        >
+        <input
+          type="text"
+          id="description"
+          name="description"
+          [(ngModel)]="carburant.description"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+      >
+        Save
+      </button>
+    </form>
+  </div>
+</div>

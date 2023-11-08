@@ -1,4 +1,51 @@
 <div class="">
+  <button class="btn" (click)="toggleForm()">Add new station</button>
+  <div *ngIf="showForm">
+    <form (ngSubmit)="addStation()" class="p-4 space-y-4">
+      <div class="flex flex-col">
+        <label for="name" class="text-sm font-semibold">Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="newStation.name"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="city" class="text-sm font-semibold">City:</label>
+        <input
+          type="text"
+          id="city"
+          name="city"
+          [(ngModel)]="newStation.city"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="address" class="text-sm font-semibold">Address:</label>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          [(ngModel)]="newStation.address"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+      >
+        Add Station
+      </button>
+    </form>
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -14,7 +61,7 @@
         <td class="px-4 py-2">{{ station.city }}</td>
         <td class="px-4 py-2">{{ station.address }}</td>
         <td class="px-4 py-2 flex flex-row gap-2">
-          <button class="link link-primary" (click)="editStation(station)">
+          <button class="link link-primary" (click)="showEditForm(station)">
             Edit
           </button>
           <button class="link link-error" (click)="deleteStation(station)">
@@ -24,4 +71,50 @@
       </tr>
     </tbody>
   </table>
+  <div *ngIf="editForm">
+    <form (ngSubmit)="editStation()" class="p-4 space-y-4">
+      <div class="flex flex-col">
+        <label for="name" class="text-sm font-semibold">Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="station.name"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="city" class="text-sm font-semibold">City:</label>
+        <input
+          type="text"
+          id="city"
+          name="city"
+          [(ngModel)]="station.city"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="address" class="text-sm font-semibold">Address:</label>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          [(ngModel)]="station.address"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+      >
+        Save
+      </button>
+    </form>
+  </div>
 </div>

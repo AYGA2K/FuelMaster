@@ -4,7 +4,7 @@
     <div class="navbar-center">
       <a
         routerLink="/station"
-        routerLinkActive="active"
+        routerLinkActive="text-cyan-500"
         ariaCurrentWhenActive="page"
         class="btn btn-ghost normal-case text-xl"
       >
@@ -12,16 +12,24 @@
       </a>
       <a
         routerLink="/carburant"
-        routerLinkActive="active"
+        routerLinkActive="text-cyan-500"
         ariaCurrentWhenActive="page"
         class="btn btn-ghost normal-case text-xl"
       >
         Carburant
       </a>
+      <a
+        routerLink="/histocarb"
+        routerLinkActive="text-cyan-500"
+        ariaCurrentWhenActive="page"
+        class="btn btn-ghost normal-case text-xl"
+      >
+        HistoCarb
+      </a>
     </div>
     <div class="navbar-end"></div>
   </div>
-  <div class="hero min-h-screen">
+  <div class="container mx-auto">
     <!-- The routed views render in the <router-outlet>-->
     <router-outlet></router-outlet>
   </div>

@@ -3,6 +3,7 @@ package ma.fstt.entity;
 import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,11 +24,13 @@ public class Histocarb {
   private Long id;
   private double price;
   private Date date;
-  @JsonBackReference
+
+  // @JsonManagedReference
   @ManyToOne
   @JoinColumn(name = "station_id")
   Station station;
-  @JsonBackReference
+
+  // @JsonManagedReference
   @ManyToOne
   @JoinColumn(name = "carburant_id")
   Carburant carburant;

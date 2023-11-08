@@ -2,6 +2,7 @@ package ma.fstt.entity;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -23,7 +24,7 @@ public class Carburant {
   private String name;
   @Column(nullable = false)
   private String description;
-  @JsonManagedReference
+  @JsonBackReference
   @OneToMany(mappedBy = "carburant")
   private Set<Histocarb> histocarbs;
 

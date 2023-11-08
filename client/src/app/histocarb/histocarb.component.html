@@ -1,0 +1,150 @@
+<div class="">
+  <button class="btn" (click)="toggleForm()">Add new Histocarb</button>
+  <div *ngIf="showForm">
+    <form (ngSubmit)="addHistocarb()" class="p-4 space-y-4">
+      <div class="flex flex-col">
+        <label for="price" class="text-sm font-semibold">Price:</label>
+        <input
+          type="text"
+          id="price"
+          name="price"
+          [(ngModel)]="newHistocarb.price"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="date" class="text-sm font-semibold">Date:</label>
+        <input
+          type="date"
+          id="date"
+          name="date"
+          [(ngModel)]="newHistocarb.date"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="stationId" class="text-sm font-semibold">Station ID:</label>
+        <input
+          type="text"
+          id="stationId"
+          name="stationId"
+          [(ngModel)]="newHistocarb.station.id"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="carburantId" class="text-sm font-semibold"
+          >Carburant ID:</label
+        >
+        <input
+          type="text"
+          id="carburantId"
+          name="carburantId"
+          [(ngModel)]="newHistocarb.carburant.id"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+      >
+        Add Histocarb
+      </button>
+    </form>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">Price</th>
+        <th class="px-4 py-2">Date</th>
+        <th class="px-4 py-2">Station</th>
+        <th class="px-4 py-2">Carburant</th>
+        <th class="px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let histocarb of histocarbs">
+        <td class="px-4 py-2">{{ histocarb.price }}</td>
+        <td class="px-4 py-2">{{ histocarb.date | date }}</td>
+        <td class="px-4 py-2">{{ histocarb.station.name }}</td>
+        <td class="px-4 py-2">{{ histocarb.carburant.name }}</td>
+        <td class="px-4 py-2 flex flex-row gap-2">
+          <button class="link link-primary" (click)="showEditForm(histocarb)">
+            Edit
+          </button>
+          <button class="link link-error" (click)="deleteHistocarb(histocarb)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="editForm">
+    <form (ngSubmit)="editHistocarb()" class="p-4 space-y-4">
+      <div class="flex flex-col">
+        <label for="price" class="text-sm font-semibold">Price:</label>
+        <input
+          type="text"
+          id="price"
+          name="price"
+          [(ngModel)]="histocarb.price"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="date" class="text-sm font-semibold">Date:</label>
+        <input
+          type="date"
+          id="date"
+          name="date"
+          [(ngModel)]="histocarb.date"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="stationId" class="text-sm font-semibold">Station ID:</label>
+        <input
+          type="text"
+          id="stationId"
+          name="stationId"
+          [(ngModel)]="histocarb.station.id"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="carburantId" class="text-sm font-semibold"
+          >Carburant ID:</label
+        >
+        <input
+          type="text"
+          id="carburantId"
+          name="carburantId"
+          [(ngModel)]="histocarb.carburant.id"
+          required
+          class="p-2 input border-white"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="p-2 bg-blue-500 text-white rounded-md hover-bg-blue-600"
+      >
+        Save
+      </button>
+    </form>
+  </div>
+</div>
